@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/tan_background"
+    android:orientation="vertical"
+    tools:context="com.example.android.playitloudapp.MainActivity">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary">
+
+        <TextView
+            android:id="@+id/create_song_list"
+            style="@style/CategoryStyle"
+            android:background="?android:attr/selectableItemBackground"
+            android:gravity="center"
+            android:text="@string/song_list" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary">
+
+        <TextView
+            android:id="@+id/create_artist_list"
+            style="@style/CategoryStyle"
+            android:background="?android:attr/selectableItemBackground"
+            android:gravity="center"
+            android:text="@string/artist_list" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary">
+
+
+        <TextView
+            android:id="@+id/create_album_list"
+            style="@style/CategoryStyle"
+            android:background="?android:attr/selectableItemBackground"
+            android:gravity="center"
+            android:text="@string/album_list" />
+    </FrameLayout>
+
+</LinearLayout>

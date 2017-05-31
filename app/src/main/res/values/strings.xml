@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">PlayItLoudApp</string>
+    <string name="song_list">List Based On Songs</string>
+    <string name="artist_list">List Based On Artist</string>
+    <string name="time_start">0:00</string>
+
+</resources>
