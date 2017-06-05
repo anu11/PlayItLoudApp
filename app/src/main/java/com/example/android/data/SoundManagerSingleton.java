@@ -31,6 +31,16 @@ public class SoundManagerSingleton {
     HashMap<String, ArrayList<SongEntity>> artistHashMap = new HashMap<>();
     private static SoundManagerSingleton instance;
 
+    public ArrayList<SongEntity> getCurrentPlayList() {
+        return currentPlayList;
+    }
+
+    public void setCurrentPlayList(ArrayList<SongEntity> currentPlayList) {
+        this.currentPlayList = currentPlayList;
+    }
+
+    private ArrayList<SongEntity> currentPlayList = null;
+
     private SoundManagerSingleton() {
     };
 
@@ -105,15 +115,17 @@ public class SoundManagerSingleton {
         switch (type) {
             case ALL:
                 return songEntityList;
+
             case ALBUM:
                 if (metaData != null) {
                     return albumHashMap.get(metaData);
                 }
-                return songEntityList;
+                break;
             case ARTIST:
                 if (metaData != null) {
                     return artistHashMap.get(metaData);
                 }
+                break;
         }
         return songEntityList;
     }
@@ -152,18 +164,18 @@ public class SoundManagerSingleton {
 
     public void incrementSongCounter() {
         counter++;
-        if (counter >= songEntityList.size()) {
+        if (counter >= currentPlayList.size()) {
             counter = 0;
         }
-        currentSongEntity = songEntityList.get(counter);
+        currentSongEntity = currentPlayList.get(counter);
     }
 
     public void decrementSongCounter() {
         counter--;
         if (counter < 0) {
-            counter = songEntityList.size() - 1;
+            counter = currentPlayList.size() - 1;
         }
-        currentSongEntity = songEntityList.get(counter);
+        currentSongEntity = currentPlayList.get(counter);
     }
 
     public SongEntity getCurrentSongEntity() {
@@ -173,7 +185,7 @@ public class SoundManagerSingleton {
     public void setCurrentSongEntity(SongEntity currentSongEntity) {
         this.currentSongEntity = currentSongEntity;
         int index = 0;
-        for (SongEntity songEntity : songEntityList) {
+        for (SongEntity songEntity : currentPlayList) {
             if (songEntity.getSongPath().equalsIgnoreCase(currentSongEntity.getSongPath())) {
                 break;
             }

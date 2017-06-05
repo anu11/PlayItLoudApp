@@ -22,10 +22,11 @@ public class ListSongActivity extends AppCompatActivity {
         String metaData = bundle.getString("metaData");
         SoundManagerSingleton.SongType songType = (SoundManagerSingleton.SongType) bundle.getSerializable("type");
 
-        ArrayList<SongEntity> arrayOfUsers = SoundManagerSingleton.getInstance(
+        ArrayList<SongEntity> arrayOfSongs = SoundManagerSingleton.getInstance(
                 this.getApplicationContext()).getSongEntityList(songType, metaData);
+        SoundManagerSingleton.getInstance(this.getApplicationContext()).setCurrentPlayList(arrayOfSongs);
 // Create the adapter to convert the array to views
-        SongAdapter adapter = new SongAdapter(this, arrayOfUsers);
+        SongAdapter adapter = new SongAdapter(this, arrayOfSongs);
 // Attach the adapter to a ListView
         ListView listView = (ListView) findViewById(R.id.list);
         listView.setAdapter(adapter);
