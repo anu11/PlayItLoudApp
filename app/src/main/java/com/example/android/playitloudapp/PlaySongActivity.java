@@ -1,6 +1,5 @@
 package com.example.android.playitloudapp;
 
-import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.MediaPlayer;
 import android.net.Uri;
@@ -17,7 +16,6 @@ import android.widget.TextView;
 import com.example.android.data.SongEntity;
 import com.example.android.data.SoundManagerSingleton;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -82,15 +80,8 @@ public class PlaySongActivity extends AppCompatActivity {
     /*
     * updates the image of the album/song/artist if present*/
     void updateSongImage() {
-        String imageArt = soundManagerSingleton.getImageforAlbum(soundManagerSingleton.getCurrentSongEntity());
         ImageView image = (ImageView) findViewById(R.id.music_icon_play);
-        Bitmap bm = null;
-        if (imageArt != null && !imageArt.isEmpty()) {
-            bm = BitmapFactory.decodeFile(imageArt);
-        }
-
-        bm = (bm != null) ? bm : BitmapFactory.decodeResource(getResources(), R.drawable.music_icon);
-        image.setImageBitmap(bm);
+        image.setImageBitmap( BitmapFactory.decodeResource(getResources(), R.drawable.music_icon));
     }
 
     @Override
@@ -113,7 +104,6 @@ public class PlaySongActivity extends AppCompatActivity {
         actionBar = getSupportActionBar();
         actionBar.setTitle(soundManagerSingleton.getCurrentSongEntity().getSongTitle().toLowerCase());
 
-        mSeekBar.setMax(Integer.parseInt(soundManagerSingleton.getCurrentSongEntity().getDuration()));
         imagePlayArrow = (ImageView) findViewById(R.id.image_play);
 
         // Set a click listener to play the audio when the list item is clicked on
@@ -156,12 +146,6 @@ public class PlaySongActivity extends AppCompatActivity {
         //Start time of the song on the seekbar
         TextView startTime = (TextView) findViewById(R.id.duration_start);
         startTime.setText(R.string.time_start);
-
-        //end time of the song on the seekbar
-        TextView endTime = (TextView) findViewById(R.id.duration_stop);
-        String endTimeInt = getMinutesFromMillis(Integer.parseInt(soundManagerSingleton.getCurrentSongEntity().getDuration()));
-        endTime.setText(endTimeInt);
-
         updateSongImage();
 
         //update Seekbar on UI thread
@@ -208,12 +192,21 @@ public class PlaySongActivity extends AppCompatActivity {
 
     }
 
+    void setDurationUI() {
+        //end time of the song on the seekbar
+        TextView endTime = (TextView) findViewById(R.id.duration_stop);
+        String endTimeInt = getMinutesFromMillis(mMediaPlayer.getDuration());
+        endTime.setText(endTimeInt);
+        mSeekBar.setMax(mMediaPlayer.getDuration());
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
         Uri uri = getSongUri(soundManagerSingleton.getCurrentSongEntity());
-        mMediaPlayer = MediaPlayer.create(PlaySongActivity.this.getApplicationContext(), uri);
+        mMediaPlayer = MediaPlayer.create(PlaySongActivity.this, uri);
         mMediaPlayer.start();
+        setDurationUI();
         if (isPlayingSong) {
             mMediaPlayer.pause();
             imagePlayArrow.setImageResource(R.drawable.ic_pause_circle_outline_white);
@@ -256,9 +249,8 @@ public class PlaySongActivity extends AppCompatActivity {
 
     //get the song uri
     private Uri getSongUri(SongEntity entity) {
-        Uri uri = Uri.fromFile(new File(entity.getSongPath()));
-        return uri;
-
+        String path = entity.getSongPath();
+        return Uri.parse("android.resource://"+getPackageName()+"/raw/" + path);
     }
 
     //plays the current song
@@ -268,6 +260,7 @@ public class PlaySongActivity extends AppCompatActivity {
         try {
             mMediaPlayer.setDataSource(MyApplication.sMyApplicationContext, uri);
             mMediaPlayer.prepare();
+            setDurationUI();
         } catch (IllegalStateException e) {
             e.printStackTrace();
             releaseMediaPlayer();

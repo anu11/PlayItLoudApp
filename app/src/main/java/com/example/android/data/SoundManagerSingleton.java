@@ -1,9 +1,6 @@
 package com.example.android.data;
 
 import android.content.Context;
-import android.database.Cursor;
-import android.net.Uri;
-import android.provider.MediaStore;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -24,7 +21,6 @@ public class SoundManagerSingleton {
     }
 
     private ArrayList<SongEntity> songEntityList = null;
-    private HashMap<String, String> albumArtData;
     private int counter = 0;
     SongEntity currentSongEntity = null;
     HashMap<String, ArrayList<SongEntity>> albumHashMap = new HashMap<>();
@@ -47,68 +43,24 @@ public class SoundManagerSingleton {
     public static SoundManagerSingleton getInstance(Context context) {
         if (instance == null) {
             instance = new SoundManagerSingleton();
-            instance.populateSongData(context);
-            instance.getAlbumArtData(context);
-        }
+            instance.populateSongData();}
         return instance;
     }
 
 
-    private void populateSongData(Context context) {
+    protected void populateSongData() {
         songEntityList = new ArrayList<>();
-        String selection = MediaStore.Audio.Media.IS_MUSIC + " != 0";
-        String[] projection = {
-                MediaStore.Audio.Media.TITLE,
-                MediaStore.Audio.Media.ARTIST,
-                MediaStore.Audio.Media.DATA,
-                MediaStore.Audio.Media.DISPLAY_NAME,
-                MediaStore.Audio.Media.DURATION,
-                MediaStore.Audio.Media.ALBUM,
-                MediaStore.Audio.Media.ALBUM_ID
+        songEntityList = new ArrayList<>();
 
-        };
-        final String sortOrder = MediaStore.Audio.AudioColumns.TITLE + " COLLATE LOCALIZED ASC";
-
-        Cursor cursor = null;
-        try {
-            Uri uri = android.provider.MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
-            cursor = context.getContentResolver().query(uri, projection, selection, null, sortOrder);
-            if (cursor != null) {
-                cursor.moveToFirst();
-
-                while (!cursor.isAfterLast()) {
-                    String title = cursor.getString(0);
-                    String artist = cursor.getString(1);
-                    String path = cursor.getString(2);
-                    String displayName = cursor.getString(3);
-                    String songDuration = cursor.getString(4);
-                    String album = cursor.getString(5);
-                    String albumId = cursor.getString(6);
-
-                    cursor.moveToNext();
-                    if (path != null && path.endsWith(".mp3")) {
-                        SongEntity newSong = new SongEntity(title, artist, path, displayName, songDuration, album, albumId);
-                        songEntityList.add(newSong);
-                    }
-                }
-
-            }
-
-            // print to see list of mp3 files
-            for (SongEntity file : songEntityList) {
-                Log.i("TAG", file.getSongPath());
-                Log.i("TAG", file.getSongAlbum());
-                Log.i("TAG", file.getSongArtist());
-                Log.i("TAG", file.getSongTitle());
-            }
-
-        } catch (Exception e) {
-            Log.e("TAG", e.toString());
-        } finally {
-            if (cursor != null) {
-                cursor.close();
-            }
-        }
+        songEntityList.add(new SongEntity("Side to side", "Ariana Grande", "song_item_1", "", "", "Dangerous women", ""));
+        songEntityList.add(new SongEntity("One last time", "Ariana Grande", "song_item_1", "", "", "Dangerous women", ""));
+        songEntityList.add(new SongEntity("The greatest", "Sia", "song_item_1", "", "", "This is Acting", ""));
+        songEntityList.add(new SongEntity("Shake it off", "Taylor Swift", "song_item_1", "", "", "T.S 1989", ""));
+        songEntityList.add(new SongEntity("State of grace", "Taylor Swift", "song_item_1", "", "", "RED", ""));
+        songEntityList.add(new SongEntity("All of me", "John Legend", "song_item_1", "", "", "Love in the future", ""));
+        songEntityList.add(new SongEntity("Ordinary people", "John Legend", "song_item_1", "", "", "get lifted", ""));
+        songEntityList.add(new SongEntity("Kill em wth kindness", "Selena Gomez", "song_item_1", "", "", "Revival", ""));
+        songEntityList.add(new SongEntity("The heart wants what it wants", "Selena Gomez", "song_item_1", "", "", "For you", ""));
     }
 
     public ArrayList<SongEntity> getSongEntityList(SongType type, String metaData) {
@@ -128,34 +80,6 @@ public class SoundManagerSingleton {
                 break;
         }
         return songEntityList;
-    }
-
-
-    public HashMap<String, String> getAlbumArtData(Context context) {
-        albumArtData = new HashMap();
-        String[] projection = {
-                MediaStore.Audio.Albums._ID,
-                MediaStore.Audio.Albums.ALBUM_ART
-        };
-
-        Cursor cursor = context.getContentResolver().query(MediaStore.Audio.Albums.EXTERNAL_CONTENT_URI, projection, null, null, null);
-        if (cursor != null) {
-            cursor.moveToFirst();
-            while (!cursor.isAfterLast()) {
-                String albumId = cursor.getString(0);
-                String albumImage = cursor.getString(1);
-
-                albumArtData.put(albumId, albumImage);
-
-                cursor.moveToNext();
-            }
-        }
-        return albumArtData;
-    }
-
-    public String getImageforAlbum(SongEntity entity) {
-        String albumID = entity.getAlbumArtId();
-        return albumArtData.get(albumID);
     }
 
     public int getCurrentSongIndex() {
