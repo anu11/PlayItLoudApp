@@ -11,20 +11,12 @@ public class SongEntity implements Serializable {
     private String songArtist;
     private String songPath;
     private String songAlbum;
-    private String songdisplayName;
-    private String songDuration;
-    private String albumArtId;
 
-
-
-    public SongEntity(String title, String artist, String data, String displayName, String songDurationTime, String album, String imageId) {
+    public SongEntity(String title, String artist, String data, String album) {
         songTitle = title;
         songArtist = artist;
         songPath = data;
-        songdisplayName = displayName;
-        songDuration = songDurationTime;
         songAlbum = album;
-        albumArtId = imageId;
     }
 
     public String getSongTitle() {
@@ -39,20 +31,8 @@ public class SongEntity implements Serializable {
         return songPath;
     }
 
-    public String getSongdisplayName() {
-        return songdisplayName;
-    }
-
-    public String getDuration() {
-        return songDuration;
-    }
-
     public String getSongAlbum() {
         return songAlbum;
-    }
-
-    public String getAlbumArtId() {
-        return albumArtId;
     }
 
 }

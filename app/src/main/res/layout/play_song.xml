@@ -2,70 +2,72 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPlaySong"
+    android:background="@color/colorAccent"
     android:orientation="vertical">
 
     <ImageView
         android:id="@+id/image_play"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/width_50dp"
+        android:layout_height="@dimen/width_50dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginLeft="40dp"
-        android:src="@drawable/ic_play_arrow_white" />
+        android:layout_marginLeft="@dimen/layout_margin_40dp"
+        android:src="@drawable/ic_play_circle_outline_white_48dp" />
 
     <ImageView
         android:id="@+id/play_next"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/width_50dp"
+        android:layout_height="@dimen/width_50dp"
         android:layout_alignParentBottom="true"
         android:layout_marginLeft="40dp"
         android:layout_toRightOf="@id/image_play"
-        android:src="@drawable/ic_skip_next_white" />
+        android:src="@drawable/ic_skip_next_white_48dp" />
 
     <ImageView
         android:id="@+id/play_previous"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/width_50dp"
+        android:layout_height="@dimen/width_50dp"
         android:layout_alignParentBottom="true"
-        android:layout_marginLeft="40dp"
+        android:layout_marginLeft="@dimen/layout_margin_40dp"
         android:layout_toLeftOf="@id/image_play"
-        android:src="@drawable/ic_skip_previous_white" />
+        android:src="@drawable/ic_skip_previous_white_48dp" />
 
     <RelativeLayout
         android:id="@+id/seekbartime"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@id/image_play"
-        android:layout_marginBottom="40dp"
-        android:layout_marginTop="26dp">
-
-        <SeekBar
-            android:id="@+id/seekBar"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:theme="@style/MySeekBarTheme"
-            android:progressBackgroundTint="@color/white"/>
+        android:layout_marginBottom="@dimen/layout_margin_40dp">
 
         <TextView
             android:id="@+id/duration_start"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/seekBar"
-            android:layout_toLeftOf="@+id/seekBar"
+            android:layout_alignParentLeft="true"
+            android:paddingLeft="@dimen/layout_margin_10dp"
             android:textColor="@color/white"/>
+
+        <SeekBar
+            android:id="@+id/seekBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/duration_start"
+            android:layout_toLeftOf="@+id/duration_stop"
+            android:layout_centerHorizontal="true"
+            android:theme="@style/MySeekBarTheme"
+            android:progressBackgroundTint="@color/white"/>
 
         <TextView
             android:id="@+id/duration_stop"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/seekBar"
-            android:layout_toRightOf="@+id/seekBar"
+            android:layout_alignParentRight="true"
+            android:paddingRight="@dimen/layout_margin_10dp"
             android:textColor="@color/white"/>
 
     </RelativeLayout>
-
 
     <ImageView
         android:id="@+id/music_icon_play"
@@ -73,9 +75,9 @@
         android:layout_height="match_parent"
         android:layout_above="@id/seekbartime"
         android:layout_centerHorizontal="true"
-
+        android:layout_marginTop="@dimen/margin_20dp"
         android:scaleType="fitCenter"
-        android:padding="10dp"
+        android:padding="@dimen/layout_margin_10dp"
         android:src="@drawable/music_icon" />
 
 </RelativeLayout>

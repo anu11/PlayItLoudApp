@@ -14,8 +14,6 @@ import java.util.List;
  */
 
 public class AlbumAdapter extends ArrayAdapter<String> {
-
-
     protected List<String> mAlbums;
 
     /**
@@ -34,19 +32,13 @@ public class AlbumAdapter extends ArrayAdapter<String> {
             listItemView = LayoutInflater.from(getContext()).inflate(
                     R.layout.list_item, parent, false);
         }
-
         // Get the { String}  located at this position in the list
         String currentAlbum = getItem(position);
-
         // Find the TextView in the list_item.xml layout
         TextView songView = (TextView) listItemView.findViewById(R.id.playit_text_view);
-
         songView.setText(currentAlbum);
-
-
         // Return the whole list item layout  so that it can be shown in
         // the ListView.
         return listItemView;
     }
-
 }

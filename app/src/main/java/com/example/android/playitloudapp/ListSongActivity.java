@@ -12,12 +12,10 @@ import java.util.ArrayList;
 
 public class ListSongActivity extends AppCompatActivity {
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.song_list);
-
         Bundle bundle = getIntent().getExtras();
         String metaData = bundle.getString("metaData");
         SoundManagerSingleton.SongType songType = (SoundManagerSingleton.SongType) bundle.getSerializable("type");
@@ -30,6 +28,5 @@ public class ListSongActivity extends AppCompatActivity {
 // Attach the adapter to a ListView
         ListView listView = (ListView) findViewById(R.id.list);
         listView.setAdapter(adapter);
-
     }
 }

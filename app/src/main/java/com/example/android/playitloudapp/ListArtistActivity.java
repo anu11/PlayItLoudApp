@@ -37,8 +37,6 @@ public class ListArtistActivity extends AppCompatActivity {
             } else {
                 Log.d(TAG, "Key Null found");
             }
-
-
         }
         ArtistAdapter adapter = new ArtistAdapter(this, listOfArtists);
 
@@ -54,9 +52,7 @@ public class ListArtistActivity extends AppCompatActivity {
                 songListIntent.putExtra("type", SoundManagerSingleton.SongType.ARTIST);
                 // Start the new activity
                 startActivity(songListIntent);
-
             }
         });
-
     }
 }

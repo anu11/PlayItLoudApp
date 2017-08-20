@@ -20,47 +20,42 @@ public class SoundManagerSingleton {
         ARTIST
     }
 
-    private ArrayList<SongEntity> songEntityList = null;
-    private int counter = 0;
+    private static SoundManagerSingleton instance;
     SongEntity currentSongEntity = null;
     HashMap<String, ArrayList<SongEntity>> albumHashMap = new HashMap<>();
     HashMap<String, ArrayList<SongEntity>> artistHashMap = new HashMap<>();
-    private static SoundManagerSingleton instance;
+    private ArrayList<SongEntity> songEntityList = null;
+    private int counter = 0;
+    private ArrayList<SongEntity> currentPlayList = null;
 
-    public ArrayList<SongEntity> getCurrentPlayList() {
-        return currentPlayList;
+    //Only one instance of this class can be created
+    private SoundManagerSingleton() {
+    }
+
+    public static SoundManagerSingleton getInstance(Context context) {
+        if (instance == null) {
+            instance = new SoundManagerSingleton();
+            instance.populateSongData();
+        }
+        return instance;
     }
 
     public void setCurrentPlayList(ArrayList<SongEntity> currentPlayList) {
         this.currentPlayList = currentPlayList;
     }
 
-    private ArrayList<SongEntity> currentPlayList = null;
-
-    private SoundManagerSingleton() {
-    };
-
-    public static SoundManagerSingleton getInstance(Context context) {
-        if (instance == null) {
-            instance = new SoundManagerSingleton();
-            instance.populateSongData();}
-        return instance;
-    }
-
-
+    //List of all the songs
     protected void populateSongData() {
         songEntityList = new ArrayList<>();
-        songEntityList = new ArrayList<>();
-
-        songEntityList.add(new SongEntity("Side to side", "Ariana Grande", "song_item_1", "", "", "Dangerous women", ""));
-        songEntityList.add(new SongEntity("One last time", "Ariana Grande", "song_item_1", "", "", "Dangerous women", ""));
-        songEntityList.add(new SongEntity("The greatest", "Sia", "song_item_1", "", "", "This is Acting", ""));
-        songEntityList.add(new SongEntity("Shake it off", "Taylor Swift", "song_item_1", "", "", "T.S 1989", ""));
-        songEntityList.add(new SongEntity("State of grace", "Taylor Swift", "song_item_1", "", "", "RED", ""));
-        songEntityList.add(new SongEntity("All of me", "John Legend", "song_item_1", "", "", "Love in the future", ""));
-        songEntityList.add(new SongEntity("Ordinary people", "John Legend", "song_item_1", "", "", "get lifted", ""));
-        songEntityList.add(new SongEntity("Kill em wth kindness", "Selena Gomez", "song_item_1", "", "", "Revival", ""));
-        songEntityList.add(new SongEntity("The heart wants what it wants", "Selena Gomez", "song_item_1", "", "", "For you", ""));
+        songEntityList.add(new SongEntity("Side to side", "Ariana Grande", "ariana_grande_side_to_side", "Dangerous women"));
+        songEntityList.add(new SongEntity("One last time", "Ariana Grande", "ariana_grande_one_last_time", "Dangerous women"));
+        songEntityList.add(new SongEntity("The greatest", "Sia", "sia_the_greatest", "This is Acting"));
+        songEntityList.add(new SongEntity("Shake it off", "Taylor Swift", "taylor_swift_shake_it_off", "T.S 1989"));
+        songEntityList.add(new SongEntity("State of grace", "Taylor Swift", "taylor_swift_state_of_grace", "RED"));
+        songEntityList.add(new SongEntity("All of me", "John Legend", "john_legend_all_of_me", "Love in the future"));
+        songEntityList.add(new SongEntity("Ordinary people", "John Legend", "john_legend_ordinary_people", "get lifted"));
+        songEntityList.add(new SongEntity("Kill em wth kindness", "Selena Gomez", "selena_gomez_kill_em_with_kindness", "Revival"));
+        songEntityList.add(new SongEntity("The heart wants what it wants", "Selena Gomez", "selena_gomez_the_heart_wants_what_it_wants", "For you"));
     }
 
     public ArrayList<SongEntity> getSongEntityList(SongType type, String metaData) {
@@ -80,10 +75,6 @@ public class SoundManagerSingleton {
                 break;
         }
         return songEntityList;
-    }
-
-    public int getCurrentSongIndex() {
-        return counter;
     }
 
     public void incrementSongCounter() {
@@ -157,8 +148,5 @@ public class SoundManagerSingleton {
 
         }
         return artistHashMap;
-
     }
-
-
 }

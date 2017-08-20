@@ -18,8 +18,6 @@ import java.util.ArrayList;
  */
 
 public class SongAdapter extends ArrayAdapter<SongEntity> {
-
-
     ArrayList<SongEntity> mSongs;
 
     /**
@@ -38,7 +36,6 @@ public class SongAdapter extends ArrayAdapter<SongEntity> {
             listItemView = LayoutInflater.from(getContext()).inflate(
                     R.layout.list_item, parent, false);
         }
-
         LinearLayout songLayout = (LinearLayout) listItemView.findViewById(R.id.song_container);
         songLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,19 +48,14 @@ public class SongAdapter extends ArrayAdapter<SongEntity> {
                 songListIntent.putExtra("position", position);
                 // Start the new activity
                 view.getContext().startActivity(songListIntent);
-
             }
         });
 
         // Get the {@link song} object located at this position in the list
         SongEntity currentSong = getItem(position);
-
         // Find the TextView in the list_item.xml layout
         TextView songView = (TextView) listItemView.findViewById(R.id.playit_text_view);
-
         songView.setText(currentSong.getSongTitle());
-
-
         // Return the whole list item layout  so that it can be shown in
         // the ListView.
         return listItemView;

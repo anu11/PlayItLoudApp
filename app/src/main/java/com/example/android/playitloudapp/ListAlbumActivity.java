@@ -18,7 +18,6 @@ import java.util.List;
 /**
  * Created by anu on 12/5/17.
  */
-
 public class ListAlbumActivity extends AppCompatActivity {
     public static final String TAG = ListAlbumActivity.class.getSimpleName();
     List<String> listOfAlbums = null;
@@ -37,27 +36,20 @@ public class ListAlbumActivity extends AppCompatActivity {
             } else {
                 Log.d(TAG, "Key Null found");
             }
-
-
         }
-
         AlbumAdapter adapter = new AlbumAdapter(this, listOfAlbums);
-
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String albumKey = listOfAlbums.get(position);
-
                 // Create a new intent to open the {@link SongActivity}
                 Intent songListIntent = new Intent(ListAlbumActivity.this, ListSongActivity.class);
                 songListIntent.putExtra("metaData", albumKey);
                 songListIntent.putExtra("type", SoundManagerSingleton.SongType.ALBUM);
                 // Start the new activity
                 startActivity(songListIntent);
-
             }
         });
-
     }
 }

@@ -15,10 +15,7 @@ import java.util.List;
  */
 
 public class ArtistAdapter extends ArrayAdapter<String> {
-
-
     List<String> mArtists;
-
     /**
      * Create a new
      */
@@ -26,7 +23,6 @@ public class ArtistAdapter extends ArrayAdapter<String> {
         super(context, 0, artist);
         mArtists = artist;
     }
-
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         // Check if an existing view is being reused, otherwise inflate the view
@@ -46,11 +42,8 @@ public class ArtistAdapter extends ArrayAdapter<String> {
         // Get the Miwok translation from the currentWord object and set this text on
         // the Miwok TextView.
         songView.setText(currentArtist);
-
-
         // Return the whole list item layout (containing 2 TextViews) so that it can be shown in
         // the ListView.
         return listItemView;
     }
-
 }

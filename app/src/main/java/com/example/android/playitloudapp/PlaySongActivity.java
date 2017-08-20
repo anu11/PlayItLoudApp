@@ -26,17 +26,13 @@ import static com.example.android.playitloudapp.R.id.seekBar;
  */
 
 public class PlaySongActivity extends AppCompatActivity {
-
     private static final String TAG = PlaySongActivity.class.getSimpleName();
-
     boolean isPlayingSong = false;
     private SeekBar mSeekBar;
     private Handler mHandler = new Handler();
     ImageView imagePlayArrow = null;
     ActionBar actionBar;
-
     ArrayList<SongEntity> mSongs;
-
     /**
      * Handles playback of all the sound files
      */
@@ -56,7 +52,7 @@ public class PlaySongActivity extends AppCompatActivity {
     };
 
     /**
-    * play the next song in the queue
+     * play the next song in the queue
      */
     void playNext() {
         soundManagerSingleton.incrementSongCounter();
@@ -68,7 +64,7 @@ public class PlaySongActivity extends AppCompatActivity {
 
     /**
      * play the previous song in the queue
-    */
+     */
     void playPrevious() {
         soundManagerSingleton.decrementSongCounter();
         SongEntity entity = soundManagerSingleton.getCurrentSongEntity();
@@ -81,7 +77,7 @@ public class PlaySongActivity extends AppCompatActivity {
     * updates the image of the album/song/artist if present*/
     void updateSongImage() {
         ImageView image = (ImageView) findViewById(R.id.music_icon_play);
-        image.setImageBitmap( BitmapFactory.decodeResource(getResources(), R.drawable.music_icon));
+        image.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.music_icon));
     }
 
     @Override
@@ -114,11 +110,11 @@ public class PlaySongActivity extends AppCompatActivity {
                 if (isPlayingSong) {
                     mMediaPlayer.pause();
 
-                    imagePlayArrow.setImageResource(R.drawable.ic_pause_circle_outline_white);
+                    imagePlayArrow.setImageResource(R.drawable.ic_pause_circle_outline_white_48dp);
 
                 } else {
                     mMediaPlayer.start();
-                    imagePlayArrow.setImageResource(R.drawable.ic_play_arrow_white);
+                    imagePlayArrow.setImageResource(R.drawable.ic_play_circle_outline_white_48dp);
                 }
                 isPlayingSong = !isPlayingSong;
 
@@ -172,7 +168,6 @@ public class PlaySongActivity extends AppCompatActivity {
                     mMediaPlayer.seekTo(progress);
                     isPlayingSong = true;
                 }
-
             }
 
             @Override
@@ -209,13 +204,12 @@ public class PlaySongActivity extends AppCompatActivity {
         setDurationUI();
         if (isPlayingSong) {
             mMediaPlayer.pause();
-            imagePlayArrow.setImageResource(R.drawable.ic_pause_circle_outline_white);
+            imagePlayArrow.setImageResource(R.drawable.ic_pause_circle_outline_white_48dp);
         } else {
             mMediaPlayer.start();
-            imagePlayArrow.setImageResource(R.drawable.ic_play_arrow_white);
+            imagePlayArrow.setImageResource(R.drawable.ic_play_circle_outline_white_48dp);
         }
         isPlayingSong = !isPlayingSong;
-
         //Setup a listener on the media player, so that we can stop and release the
         //media player once the sound has finished playing.
         mMediaPlayer.setOnCompletionListener(mCompletionListener);
@@ -250,7 +244,7 @@ public class PlaySongActivity extends AppCompatActivity {
     //get the song uri
     private Uri getSongUri(SongEntity entity) {
         String path = entity.getSongPath();
-        return Uri.parse("android.resource://"+getPackageName()+"/raw/" + path);
+        return Uri.parse("android.resource://" + getPackageName() + "/raw/" + path);
     }
 
     //plays the current song
@@ -270,17 +264,13 @@ public class PlaySongActivity extends AppCompatActivity {
             releaseMediaPlayer();
             return;
         }
-
         mMediaPlayer.start();
-
     }
 
-
     public static String getMinutesFromMillis(long milliseconds) {
-
         long minutes = (milliseconds / 1000) / 60;
         long seconds = (milliseconds / 1000) % 60;
-        String time = "" + minutes + ":" + seconds;
+        String time = "" + minutes + ":" + (seconds < 10 ? ("0" + seconds) : seconds);
         return time;
     }
 }
