@@ -1,5 +1,6 @@
 package com.example.android.playitloudapp;
 
+import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.media.MediaPlayer;
 import android.net.Uri;
@@ -182,6 +183,18 @@ public class PlaySongActivity extends AppCompatActivity {
                 Log.d(TAG, "onStopTrackingTouch");
                 mMediaPlayer.seekTo(progress);
                 mMediaPlayer.start();
+            }
+        });
+
+        ImageView homeButton = (ImageView) findViewById(R.id.home_button);
+        homeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Create a new intent to open the BluesActivity
+                Intent mainIntent = new Intent(PlaySongActivity.this, MainActivity.class);
+
+                // Start the new activity
+                startActivity(mainIntent);
             }
         });
 

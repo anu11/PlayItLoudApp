@@ -19,7 +19,6 @@ import java.util.ArrayList;
 
 public class SongAdapter extends ArrayAdapter<SongEntity> {
     ArrayList<SongEntity> mSongs;
-
     /**
      * Create a new song adapter
      */

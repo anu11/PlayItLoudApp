@@ -10,6 +10,28 @@
         android:background="@color/tan_background"
         android:orientation="vertical">
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="12dp"
+            android:paddingLeft="@dimen/padding_8dp"
+            android:paddingRight="@dimen/padding_8dp"
+            android:paddingBottom="@dimen/padding_8dp"
+            android:textColor="@color/white"
+            android:background="@color/colorPrimary"
+            android:text="@string/mainactivity_title"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/padding_8dp"
+            android:paddingRight="@dimen/padding_8dp"
+            android:paddingBottom="@dimen/padding_8dp"
+            android:textColor="@color/white"
+            android:background="@color/colorPrimary"
+            android:text="@string/mainactivity_details"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
         <ImageView
             android:layout_width="@dimen/image_main_size"
             android:layout_height="@dimen/image_main_size"

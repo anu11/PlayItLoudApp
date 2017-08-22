@@ -2,14 +2,13 @@ package com.example.android.playitloudapp;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
 import com.example.android.data.SoundManagerSingleton;
 
-public class MainActivity extends AppCompatActivity implements ActivityCompat.OnRequestPermissionsResultCallback {
+public class MainActivity extends AppCompatActivity  {
 
     View.OnClickListener textViewOnclickListener = new View.OnClickListener() {
         @Override
@@ -46,6 +45,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         super.onCreate(savedInstanceState);
         // Set the content of the activity to use the activity_main.xml layout file
         setContentView(R.layout.activity_main);
+
 
         //find the view that shows a list based on songs
         TextView textView = (TextView) findViewById(R.id.create_song_list);

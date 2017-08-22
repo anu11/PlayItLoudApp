@@ -16,9 +16,7 @@ import java.util.List;
 
 public class ArtistAdapter extends ArrayAdapter<String> {
     List<String> mArtists;
-    /**
-     * Create a new
-     */
+
     public ArtistAdapter(Context context, List<String> artist) {
         super(context, 0, artist);
         mArtists = artist;
