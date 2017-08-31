@@ -4,6 +4,7 @@
     <string name="artist_list">Artists</string>
     <string name="time_start">0:00</string>
     <string name="album_list">Albums</string>
+    <string name="payment_button">Get Premium</string>
 
     //MainActivity Detail
     <string name="mainactivity_title">MAIN ACTIVITY PAGE</string>
@@ -18,5 +19,10 @@
     //PlayList Screen
     <string name="choosesong_detail">This screen shows a list of songs based on the category selected on the main activity screen.
         It uses a ListView and custom array adapter</string>
+
+    //Payment Screen
+    <string name="payment_detail">PayPal is an international digital wallet-based e-commerce business allowing payments
+        and money transfers to be made through the Internet.Its API exposes extensive functionality to developers, including
+        invoice management, transaction processing and account management.For more details click on the button below</string>
 
 </resources>

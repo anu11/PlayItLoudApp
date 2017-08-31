@@ -98,6 +98,17 @@
                 android:textSize="@dimen/category_textsize" />
         </FrameLayout>
 
+        <TextView
+            android:id="@+id/payment_page"
+            style="@style/CategoryStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/category_textsize"
+            android:text="@string/payment_button"
+            android:background="@color/colorAccent"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="@dimen/layout_margin_10dp"/>
+
     </LinearLayout>
 
 </ScrollView>

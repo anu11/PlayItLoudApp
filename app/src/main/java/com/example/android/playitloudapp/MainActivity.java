@@ -40,6 +40,17 @@ public class MainActivity extends AppCompatActivity  {
         }
     };
 
+    View.OnClickListener premiumtextViewOnclickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            // Create a new intent to open the {@link payment}
+            Intent songListIntent = new Intent(MainActivity.this, PaymentActivity.class);
+
+            // Start the new activity
+            startActivity(songListIntent);
+        }
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,5 +69,9 @@ public class MainActivity extends AppCompatActivity  {
         //find the view that shows a list based on album
         TextView albumTextView = (TextView) findViewById(R.id.create_album_list);
         albumTextView.setOnClickListener(albumtextViewOnclickListener);
+
+        TextView premiumTextView = (TextView) findViewById(R.id.payment_page);
+        premiumTextView.setOnClickListener(premiumtextViewOnclickListener);
+
     }
 }
