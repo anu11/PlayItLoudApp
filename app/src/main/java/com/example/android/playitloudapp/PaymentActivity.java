@@ -18,6 +18,7 @@ public class PaymentActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment);
+        getSupportActionBar().setTitle("Payment Page");
 
         TextView detailPaymentApi = (TextView) findViewById(R.id.api_detail);
         detailPaymentApi.setText(getString(R.string.payment_detail));

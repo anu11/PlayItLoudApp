@@ -8,6 +8,7 @@
     <string name="album_header">Album List</string>
     <string name="artist_header">Artist List</string>
     <string name="allsongs_header">All Songs List</string>
+    <string name="payment_screen">PAYMENT ACTIVITY SCREEN</string>
 
     //MainActivity Detail
     <string name="mainactivity_title">MAIN ACTIVITY PAGE</string>
