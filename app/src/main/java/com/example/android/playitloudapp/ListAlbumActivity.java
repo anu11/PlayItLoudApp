@@ -34,8 +34,10 @@ public class ListAlbumActivity extends AppCompatActivity {
         ListView listView = (ListView) findViewById(R.id.list);
         // Inflate header view
         ViewGroup headerView = (ViewGroup)getLayoutInflater().inflate(R.layout.playlist_header_detail, listView, false);
-        TextView textHeader = (TextView) headerView.findViewById(R.id.text_listview_header);
-        textHeader.setText(getString(R.string.choosesong_detail));
+        TextView textHeader = (TextView) headerView.findViewById(R.id.page_header_textview);
+        textHeader.setText(getString(R.string.album_header).toUpperCase());
+        TextView textHeaderDetail = (TextView) headerView.findViewById(R.id.text_listview_header_detail);
+        textHeaderDetail.setText(getString(R.string.choosesong_detail));
         // Add header view to the ListView
         listView.addHeaderView(headerView);
 

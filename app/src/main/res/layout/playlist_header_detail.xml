@@ -12,22 +12,33 @@
         android:background="@color/colorPrimary"
         android:src="@drawable/ic_home_white_48dp"
         />
-  <LinearLayout
+  <RelativeLayout
       android:layout_width="match_parent"
       android:layout_height="match_parent"
       android:layout_toRightOf="@id/home_button">
+
+      <TextView
+          android:id="@+id/page_header_textview"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:paddingLeft="@dimen/padding_16dp"
+          android:paddingTop="@dimen/padding_16dp"
+          android:textColor="@color/white"
+          android:textSize="@dimen/textsize_15sp"
+          android:background="@color/colorPrimary"/>
 
       <!-- ListView Header -->
       <TextView
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:id="@+id/text_listview_header"
+          android:id="@+id/text_listview_header_detail"
+          android:layout_below="@+id/page_header_textview"
           android:padding="@dimen/padding_16dp"
           android:textColor="@color/white"
           android:textSize="15sp"
           android:background="@color/colorPrimary"/>
 
 
-  </LinearLayout>
+  </RelativeLayout>
 
 </LinearLayout>

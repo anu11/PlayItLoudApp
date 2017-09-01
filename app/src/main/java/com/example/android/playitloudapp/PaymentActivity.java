@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 /**
@@ -33,6 +34,18 @@ public class PaymentActivity extends AppCompatActivity {
         Button detailsButton = (Button) findViewById(R.id.button_api_details);
 
         detailsButton.setOnClickListener(detailsButtonListener);
+
+        ImageView homeButton = (ImageView) findViewById(R.id.home_button);
+        homeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Create a new intent to open the BluesActivity
+                Intent mainIntent = new Intent(PaymentActivity.this, MainActivity.class);
+
+                // Start the new activity
+                startActivity(mainIntent);
+            }
+        });
 
     }
 }

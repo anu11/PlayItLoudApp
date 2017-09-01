@@ -1,10 +1,13 @@
 <resources>
-    <string name="app_name">PlayItLoudApp</string>
+    <string name="app_name">Play It Loud App</string>
     <string name="song_list">All Songs</string>
     <string name="artist_list">Artists</string>
     <string name="time_start">0:00</string>
     <string name="album_list">Albums</string>
     <string name="payment_button">Get Premium</string>
+    <string name="album_header">Album List</string>
+    <string name="artist_header">Artist List</string>
+    <string name="allsongs_header">All Songs List</string>
 
     //MainActivity Detail
     <string name="mainactivity_title">MAIN ACTIVITY PAGE</string>
